@@ -4,8 +4,7 @@
 * version:0.0.1
 **/
 ;(function(w, doc) {
-	function mConsole() {		
-	}	
+	function mConsole() {}	
 	mConsole.prototype = {
 		init : function() {
 			var that = this;
@@ -38,11 +37,16 @@
 			var p = doc.createElement('p');
 			p.innerHTML = msg;
 			rs.insertBefore(p, rs.firstChild)
+		},
+		log: function(msg) {
+			this.add(msg);
 		}
 	}	
 	var c = new mConsole();
-	c.init();
+	c.init();	
 	w.onerror =  function(msg, errfile, line) {
 		c.add(msg + ':' + errfile + ':' + line)
 	}
+
+	w.console = c;
 })(window, document);
